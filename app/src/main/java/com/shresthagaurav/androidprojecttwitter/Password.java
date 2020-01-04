@@ -1,5 +1,6 @@
 package com.shresthagaurav.androidprojecttwitter;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,7 +44,15 @@ public class Password extends AppCompatActivity {
         btnlogin.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+if(password.isEmpty()){
+    Toast.makeText( Password.this, "check password", Toast.LENGTH_SHORT ).show();
+return;}else{
+    Intent intent = new Intent( Password.this, Camera.class);
+    intent.putExtra( "email",email );
+    intent.putExtra( "username",username );
+    intent.putExtra( "password",password );
+    startActivity( intent );
+}
             }
         } );
         txtpass.addTextChangedListener( new TextWatcher() {
