@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,10 @@ public class Password extends AppCompatActivity {
     EditText txtpass;
     TextView txterror;
     ImageButton imageButton;
-    int i=0;
+    int i = 0;
+    String email = "";
+    String username = "";
+    String password="";
     Button btnlogin;
 
     @Override
@@ -29,7 +33,18 @@ public class Password extends AppCompatActivity {
         txterror = findViewById( R.id.txtxP_error );
         imageButton = findViewById( R.id.btn_P_showpass );
         btnlogin = findViewById( R.id.btn_P_login );
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            email = bundle.getString( "email" );
+            username = bundle.getString( "username" );
 
+        }
+        btnlogin.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        } );
         txtpass.addTextChangedListener( new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -41,9 +56,11 @@ public class Password extends AppCompatActivity {
                 if (txtpass.length() >= 6) {
                     txterror.setTextColor( Color.BLACK );
                     txterror.setText( "" );
+                    password=txtpass.getText().toString();
                     txtpass.setBackgroundTintList( ColorStateList.valueOf( Color.parseColor( "#00acee" ) ) );
-               return; } else {
-                    txtpass.setBackgroundTintList( ColorStateList.valueOf( Color.RED ) ) ;
+                    return;
+                } else {
+                    txtpass.setBackgroundTintList( ColorStateList.valueOf( Color.RED ) );
                     txterror.setTextColor( Color.RED );
                     txterror.setText( "password must be more than 6 chracters" );
                     return;
@@ -58,12 +75,12 @@ public class Password extends AppCompatActivity {
         imageButton.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(i==0){
-                    txtpass.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                if (i == 0) {
+                    txtpass.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD );
                     i++;
-                }else{
-                    txtpass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    i=0;
+                } else {
+                    txtpass.setInputType( InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
+                    i = 0;
                 }
 
             }

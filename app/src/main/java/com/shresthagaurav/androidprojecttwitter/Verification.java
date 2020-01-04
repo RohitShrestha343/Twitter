@@ -2,6 +2,7 @@ package com.shresthagaurav.androidprojecttwitter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Verification extends AppCompatActivity {
     TextView tx_veri;
     Button btn_next;
+    String email = "";
+    String username = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,14 @@ public class Verification extends AppCompatActivity {
                 try {
                     sleep( 1000 );
                     tx_veri.setText( "1,2,5,4,0,6" );
+                    Bundle bundle = getIntent().getExtras();
+                    if (bundle != null) {
+                        email = bundle.getString( "email" );
+                        username = bundle.getString( "username" );
+                        Log.d( "email", email );
+                        Log.d( "username", username );
+
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -42,6 +53,8 @@ public class Verification extends AppCompatActivity {
                     return;
                 }
                 Intent intent = new Intent( Verification.this, Password.class );
+                intent.putExtra( "email", email );
+                intent.putExtra( "username", username );
                 startActivity( intent );
             }
         } );

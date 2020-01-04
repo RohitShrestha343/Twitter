@@ -45,7 +45,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/SN_usernmae"
+        android:id="@+id/username_final"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -62,7 +62,7 @@
         tools:layout_editor_absoluteX="24dp" />
 
     <TextView
-        android:id="@+id/SN_email"
+        android:id="@+id/email_final"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
