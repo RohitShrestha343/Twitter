@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         createUser.setOnClickListener( new View.OnClickListener() {
                                            @Override
                                            public void onClick(View v) {
-                                               Intent signUP= new Intent( MainActivity.this,Final_Step_signUP.class );
+                                               Intent signUP= new Intent( MainActivity.this,SignUP.class );
                                                startActivity( signUP );
                                            }
                                        }

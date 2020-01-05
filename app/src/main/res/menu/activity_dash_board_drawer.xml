@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="profile" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="List" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="topics" />
+        <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Bookmarks" />
+        <item
+            android:id="@+id/nav_toolss"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Moments" />
+    </group>
+
+    <item android:title=""
+        app:orientation="horizontal">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+
+                android:title="Setting and privacy" />
+            <item
+                android:id="@+id/nav_send"
+
+                android:title="Help Center" />
+        </menu>
+    </item>
+<item android:title="">
+    <menu>
+    <item
+        android:title="dasd"
+        android:id="@+id/menu_pick_color"/>
+
+
+    <item
+        android:title="dasd"
+        android:id="@+id/menu_clear"
+        android:icon="@null"
+       />
+
+    <item
+        android:title="dasd"
+        android:id="@+id/menu_save"
+        android:icon="@null"
+       />
+
+</menu>
+</item>
+</menu>

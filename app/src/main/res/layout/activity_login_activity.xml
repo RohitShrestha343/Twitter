@@ -74,7 +74,7 @@
     <EditText
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:id="@+id/editText"
+        android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -89,13 +89,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Password"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/login_email"
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:id="@+id/editText2"
+        android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -103,16 +103,16 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageButton
-        android:id="@+id/btn_showpassRP"
+        android:id="@+id/btn_SP"
         android:layout_width="24dp"
         android:layout_height="20dp"
         android:background="@android:color/transparent"
         android:padding="5dp"
         android:scaleType="center"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/editText2"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
-        app:layout_constraintTop_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toBottomOf="@+id/login_password"
+        app:layout_constraintEnd_toEndOf="@+id/login_password"
+        app:layout_constraintTop_toTopOf="@+id/login_password"
         app:layout_constraintVertical_bias="0.36"
         app:srcCompat="@drawable/ic_pass" />
 
@@ -123,20 +123,20 @@
         android:layout_marginTop="16dp"
         android:text="Forgot password?"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/login_password"
         tools:layout_editor_absoluteX="0dp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#c0c0c0"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintVertical_bias="0.964"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="270dp"

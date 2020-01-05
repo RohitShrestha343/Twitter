@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUP">
+    tools:context=".Customize">
 
     <ImageView
         android:id="@+id/profile_image"
@@ -38,118 +38,96 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="20dp"
-        android:text="Create your account"
+        android:text="Customize your experience"
         android:textColor="#000000"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/profile_image"
         tools:layout_editor_absoluteX="0dp" />
 
-    <EditText
-        android:id="@+id/SN_usernmae"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="@color/colorTwitter"
-        android:ems="15"
-        android:hint="Username"
-        android:maxLength="60"
-        android:paddingRight="30dp"
-        android:singleLine="true"
-        android:textAlignment="textStart"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:layout_editor_absoluteX="24dp" />
-
-    <ImageView
-        android:id="@+id/SN_userP"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/SN_usernmae"
-        app:layout_constraintEnd_toEndOf="@+id/SN_usernmae"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/SN_usernmae"
-        app:layout_constraintTop_toTopOf="@+id/SN_usernmae"
-        app:layout_constraintVertical_bias="0.571" />
-
-    <ImageView
-        android:id="@+id/SN_emailP"
-        android:layout_width="24dp"
-        android:scaleType="fitXY"
-        android:layout_height="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/SN_email"
-        app:layout_constraintEnd_toEndOf="@+id/SN_email"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/SN_email"
-        app:layout_constraintTop_toTopOf="@+id/SN_email"
-        app:layout_constraintVertical_bias="0.571" />
-
     <TextView
-        android:id="@+id/SN_username_error"
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:text="50"
-        android:textAlignment="textEnd"
+        android:text="Track where you see Twitter content \nacross the web"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SN_usernmae" />
-
-    <EditText
-        android:id="@+id/SN_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="@color/colorTwitter"
-        android:hint="Email not less than 10 characters  "
-        android:inputType="textEmailAddress"
-        android:paddingRight="30dp"
-        android:singleLine="true"
-        android:textAlignment="textStart"
-        app:layout_constraintTop_toBottomOf="@+id/SN_username_error"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/SN_pass_error"
+        android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
+        android:paddingRight="16dp"
+        android:text="Twitter uses this data to personalize your experience. This web browsing history will never be stored with your name, email or phone number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SN_email" />
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="6dp"
+        android:buttonTint="@color/colorTwitter"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.409" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+        <TextView
+            android:id="@+id/textVie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="for more details about these setting,visit the" />
+
+        <TextView
+            android:id="@+id/Help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:paddingRight="10dp"
+            android:text="Help Center."
+            android:textColor="@color/colorTwitter" />
+
+    </LinearLayout>
+
 
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:layout_marginTop="256dp"
         android:background="#c0c0c0"
-        app:layout_constraintTop_toBottomOf="@+id/SN_pass_error"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="28dp"
-        android:text="use phone instead"
-        android:visibility="visible"
-        android:textColor="@color/colorTwitter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_cus_next"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.965"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
-        android:id="@+id/btn_FS_signup"
+        android:id="@+id/btn_cus_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="270dp"

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,13 +28,15 @@ import retrofit2.Response;
 
 public class SignUP extends AppCompatActivity {
     EditText sn_email, sn_username;
-    ImageButton sn_Us, sn_Em;
+    ImageView sn_Us, sn_Em;
     Button btn_next;
     int countUsername = 0;
     int initialbtn = 0;
     String method = "email";
     String Email = "";
-    String Username="";
+    String Username = "";
+    boolean chekU=false;
+    boolean chekE=false;
     TextView tvChange, sn_em_error, sn_us_error;
 
     @Override
@@ -48,23 +51,26 @@ public class SignUP extends AppCompatActivity {
         sn_Em = findViewById( R.id.SN_emailP );
         btn_next = findViewById( R.id.btn_FS_signup );
         tvChange = findViewById( R.id.textView9 );
-        Bundle bundle=getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-Email= bundle.getString( "email" );
-Username=bundle.getString( "username" );
+            Email = bundle.getString( "email" );
+            Username = bundle.getString( "username" );
             sn_email.setText( bundle.getString( "email" ) );
             sn_username.setText( bundle.getString( "username" ) );
         }
         btn_next.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Email.isEmpty()&&(Username.isEmpty())) {
-                    Toast.makeText( SignUP.this, "check value", Toast.LENGTH_SHORT ).show();
-                    return;
-                } else {
-                    User user = new User( Email );
+                if(chekE==true&&chekU==true){
+
+                        User user = new User( Email );
                     Checkuser( user );
+
+                }else{
+                    Toast.makeText( SignUP.this, "fill require field with valid information", Toast.LENGTH_SHORT ).show();
+                    return;
                 }
+
             }
         } );
         sn_username.addTextChangedListener( new TextWatcher() {
@@ -82,14 +88,15 @@ Username=bundle.getString( "username" );
                         sn_us_error.setTextColor( Color.BLACK );
                         sn_us_error.setText( "" + countUsername );
                         sn_Us.setImageResource( R.drawable.ic_checked );
-                        Username=sn_username.getText().toString();
+                        chekU=true;
+                        Username = sn_username.getText().toString();
                         return;
                     } else if (countUsername < 0) {
                         countUsername = 50 - countL;
                         sn_us_error.setTextColor( Color.RED );
                         sn_us_error.setText( "Must be 50 characters or fewer." );
                         sn_us_error.append( "      " + countUsername );
-                        sn_email.setText( String.valueOf( countUsername ) );
+                        chekU=false;
                         sn_Us.setImageResource( R.drawable.ic_clear );
                         return;
 
@@ -142,22 +149,26 @@ Username=bundle.getString( "username" );
                         if ((sn_email.getText().toString().toLowerCase().contains( "@" )) && (sn_email.getText().toString().toLowerCase().contains( ".com" ))) {
                             sn_Em.setImageResource( R.drawable.ic_checked );
                             Email = sn_email.getText().toString();
+                            chekE=true;
                         } else {
                             sn_em_error.setText( "check your email" );
                             sn_Em.setImageResource( R.drawable.ic_clear );
+                            chekE=false;
 
                         }
                         break;
                     case "phone":
                         sn_em_error.setText( "" );
-                        if ((sn_email.length() <= 1)||(sn_email.length()>10)) {
+                        if ((sn_email.length() != 10)) {
                             sn_em_error.setText( "check your number" );
                             sn_Em.setImageResource( R.drawable.ic_clear );
+                            chekE=false;
                             return;
 
                         } else {
                             sn_Em.setImageResource( R.drawable.ic_checked );
                             Email = sn_email.getText().toString();
+                            chekE=true;
                             return;
 
                         }
@@ -175,7 +186,6 @@ Username=bundle.getString( "username" );
     }
 
     void Checkuser(User us) {
-        Toast.makeText( this, "   " + us.getEmail(), Toast.LENGTH_SHORT ).show();
         ApiClass apiClass = new ApiClass();
         Call<Check> checkCall = apiClass.calls().check( us );
         checkCall.enqueue( new Callback<Check>() {
@@ -187,18 +197,18 @@ Username=bundle.getString( "username" );
                     return;
                 }
                 Check check = response.body();
-                Toast.makeText( SignUP.this, "user " + check.getStatus(), Toast.LENGTH_SHORT ).show();
-if(check.getStatus().equals( "good to go" )){
-    Intent next=new Intent( SignUP.this,Final_Step_signUP.class );
-    next.putExtra( "email",Email );
-    next.putExtra( "username",Username );
-    startActivity( next );
-    return;
-}else{
-    Toast.makeText( SignUP.this, "user " + check.getStatus(), Toast.LENGTH_SHORT ).show();
-sn_em_error.setText( "exited" );
-sn_em_error.setTextColor( Color.RED );
-}
+                //Toast.makeText( SignUP.this, "user " + check.getStatus(), Toast.LENGTH_SHORT ).show();
+                if (check.getStatus().equals( "good to go" )) {
+                    Intent next = new Intent( SignUP.this, Customize.class );
+                    next.putExtra( "email", Email );
+                    next.putExtra( "username", Username );
+                    startActivity( next );
+                    return;
+                } else {
+                    //Toast.makeText( SignUP.this, "user " + check.getStatus(), Toast.LENGTH_SHORT ).show();
+                    sn_em_error.setText( "exited" );
+                    sn_em_error.setTextColor( Color.RED );
+                }
             }
 
             @Override
