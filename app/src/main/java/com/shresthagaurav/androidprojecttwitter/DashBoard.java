@@ -1,5 +1,6 @@
 package com.shresthagaurav.androidprojecttwitter;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,6 +14,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.shresthagaurav.androidprojecttwitter.api.ApiClass;
+import com.shresthagaurav.androidprojecttwitter.model.User;
+import com.shresthagaurav.androidprojecttwitter.model.UserInfo;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -20,10 +24,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.InputStream;
+import java.net.URL;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DashBoard extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    Camera cm = new Camera();
+    Login_activity la = new Login_activity();
+    TextView tx_nmae,txt_email;
+    ImageView imageView;
+    public static final String base_url = "http://10.0.2.2:3000/";
+    String imagePath = base_url + "uploads/" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +51,17 @@ public class DashBoard extends AppCompatActivity {
         setContentView( R.layout.activity_dash_board );
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
-        FloatingActionButton fab = findViewById( R.id.fab );
-        fab.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_LONG )
-                        .setAction( "Action", null ).show();
-            }
-        } );
+        loadCurrentUser();
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.nav_view );
+        View hView =  navigationView.getHeaderView(0);
+        tx_nmae =hView.findViewById( R.id.ppname );
+        txt_email =hView.findViewById( R.id.ppemail );
+        imageView =hView.findViewById( R.id.ppimageView );
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send )
+                R.id.nav_home)
                 .setDrawerLayout( drawer )
                 .build();
         NavController navController = Navigation.findNavController( this, R.id.nav_host_fragment );
@@ -65,5 +81,50 @@ public class DashBoard extends AppCompatActivity {
         NavController navController = Navigation.findNavController( this, R.id.nav_host_fragment );
         return NavigationUI.navigateUp( navController, mAppBarConfiguration )
                 || super.onSupportNavigateUp();
+    }
+    private void loadCurrentUser() {
+        String token;
+        if (la.Token.isEmpty()) {
+            token = cm.token;
+            //Toast.makeText(getContext(), "token " +token, Toast.LENGTH_SHORT).show();
+
+        } else {
+            token = la.Token;
+            // Toast.makeText(getContext(), "token " +token, Toast.LENGTH_SHORT).show();
+
+        }
+
+        ApiClass usersAPI = new ApiClass();
+
+        Call<UserInfo> userCall = usersAPI.calls().getUser( token );
+        userCall.enqueue( new Callback<UserInfo>() {
+            @Override
+            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText( DashBoard.this, "Code " + response.code(), Toast.LENGTH_SHORT ).show();
+                    return;
+                }
+                UserInfo userInfo= response.body();
+                Toast.makeText( DashBoard.this, " "+userInfo.get_id(), Toast.LENGTH_SHORT ).show();
+                tx_nmae.setText( userInfo.getUsername() );
+                txt_email.setText( userInfo.getEmail() );
+              String imgPath = imagePath +  userInfo.getImage();
+                try {
+                    URL url = new URL(imgPath);
+                    imageView.setImageBitmap( BitmapFactory.decodeStream((InputStream) url.getContent()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<UserInfo>call, Throwable t) {
+                Toast.makeText( DashBoard.this, "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
+
+            }
+        } );
+
+
     }
 }

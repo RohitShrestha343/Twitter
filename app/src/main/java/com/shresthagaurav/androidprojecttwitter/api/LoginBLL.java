@@ -12,6 +12,7 @@ import retrofit2.Response;
 public class LoginBLL {
 
     boolean isSuccess = false;
+  public static   String Token;
 
     public boolean checkUser(String username, String password) {
 
@@ -23,8 +24,10 @@ public class LoginBLL {
             Response<SignUpResponse> loginResponse = usersCall.execute();
             if (loginResponse.isSuccessful() &&
                     loginResponse.body().getStatus().equals("Login success!")) {
+                        SignUpResponse signUpResponse=loginResponse.body();
+                        Token=signUpResponse.getToken();
 
-                URL.token += loginResponse.body().getToken();
+
                 // Url.Cookie = imageResponseResponse.headers().get("Set-Cookie");
                 isSuccess = true;
             }

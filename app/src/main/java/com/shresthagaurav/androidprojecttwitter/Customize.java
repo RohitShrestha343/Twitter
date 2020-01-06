@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Customize extends AppCompatActivity {
@@ -18,6 +19,7 @@ TextView tv_help;
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_customize );
         btn_next=findViewById( R.id.btn_cus_next );
+
         tv_help=findViewById( R.id.Help );
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -39,5 +41,6 @@ TextView tv_help;
                 startActivity(intent);
             }
         } );
+
     }
 }

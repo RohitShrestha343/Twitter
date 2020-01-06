@@ -17,9 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".YourSelf"></activity>
+        <activity android:name=".Interested"/>
+        <activity android:name=".YourSelf" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".DashBoard"
             android:label="title_activity_dash_board"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Customize" />
@@ -30,7 +31,7 @@
         <activity android:name=".Password" />
         <activity android:name=".Verification" />
         <activity android:name=".Final_Step_signUP" />
-        <activity android:name=".DashBoard">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

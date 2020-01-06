@@ -4,7 +4,7 @@ public class User {
     String email;
     String password;
     String username;
-        String image;
+    String image;
 
     public User(String email) {
         this.email = email;
@@ -25,6 +25,7 @@ public class User {
         this.username = username;
         this.image = image;
     }
+
 
     public String getPassword() {
         return password;

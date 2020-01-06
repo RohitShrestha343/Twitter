@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 public class SignUP extends AppCompatActivity {
     EditText sn_email, sn_username;
-    ImageView sn_Us, sn_Em;
+    ImageView sn_Us, sn_Em, back;
     Button btn_next;
     int countUsername = 0;
     int initialbtn = 0;
@@ -45,6 +45,7 @@ public class SignUP extends AppCompatActivity {
         setContentView( R.layout.activity_sign_up );
         sn_email = findViewById( R.id.SN_email );
         sn_username = findViewById( R.id.SN_usernmae );
+        back=findViewById( R.id.SN_back );
         sn_em_error = findViewById( R.id.SN_pass_error );
         sn_us_error = findViewById( R.id.SN_username_error );
         sn_Us = findViewById( R.id.SN_userP );
@@ -58,6 +59,14 @@ public class SignUP extends AppCompatActivity {
             sn_email.setText( bundle.getString( "email" ) );
             sn_username.setText( bundle.getString( "username" ) );
         }
+        back.setOnClickListener( new View.OnClickListener() {
+                                     @Override
+                                     public void onClick(View v) {
+                                         Intent back=new Intent( SignUP.this,MainActivity.class );
+                                         startActivity( back );
+                                     }
+                                 }
+        );
         btn_next.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -35,7 +36,8 @@ public class Camera extends AppCompatActivity {
     ImageView iv_profile;
     Button btn_login;
     String password, email, username, imageName;
-    String imagePath;
+    String imagePath = "";
+    public static String token = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,11 @@ public class Camera extends AppCompatActivity {
         btn_login.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (imagePath.isEmpty()) {
+                    Toast.makeText( Camera.this, "Select Image first", Toast.LENGTH_SHORT ).show();
+                    return;
+                }
                 saveImageOnly();
                 signUp();
             }
@@ -112,7 +119,6 @@ public class Camera extends AppCompatActivity {
         try {
             Response<ImageModel> imageResponseResponse = responseBodyCall.execute();
             imageName = imageResponseResponse.body().getFilename();
-            Toast.makeText( this, "Image inserted" + imageName, Toast.LENGTH_SHORT ).show();
 
         } catch (IOException e) {
             Toast.makeText( this, "Error" + e.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
@@ -124,7 +130,7 @@ public class Camera extends AppCompatActivity {
         User users = new User( email, password, username, imageName );
 
         ApiClass usersAPI = new ApiClass();
-        Call<SignUpResponse> signUpCall = usersAPI.calls().register( users );
+        final Call<SignUpResponse> signUpCall = usersAPI.calls().register( users );
 
         signUpCall.enqueue( new Callback<SignUpResponse>() {
             @Override
@@ -133,7 +139,13 @@ public class Camera extends AppCompatActivity {
                     Toast.makeText( Camera.this, "Code " + response.code(), Toast.LENGTH_SHORT ).show();
                     return;
                 }
-                Toast.makeText( Camera.this, "Registered", Toast.LENGTH_SHORT ).show();
+                SignUpResponse signUpResponse = response.body();
+                token = signUpResponse.getToken();
+                Log.d( "token", token );
+                Intent intent = new Intent( Camera.this, YourSelf.class );
+                intent.putExtra( "token", token );
+                startActivity( intent );
+
             }
 
             @Override
