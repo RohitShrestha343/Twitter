@@ -1,4 +1,4 @@
-package com.shresthagaurav.androidprojecttwitter;
+package com.shresthagaurav.androidprojecttwittere;
 
 import org.junit.Test;
 

@@ -7,36 +7,36 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.shresthagaurav.androidprojecttwitter.ui.home.HomeFragment"
+        android:name="com.shrestharohit.androidprojecttwittere.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.shresthagaurav.androidprojecttwitter.ui.gallery.GalleryFragment"
+        android:name="com.shrestharohit.androidprojecttwittere.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.shresthagaurav.androidprojecttwitter.ui.slideshow.SlideshowFragment"
+        android:name="com.shrestharohit.androidprojecttwittere.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.shresthagaurav.androidprojecttwitter.ui.tools.ToolsFragment"
+        android:name="com.shrestharohit.androidprojecttwittere.ui.tools.ToolsFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
 
     <fragment
         android:id="@+id/nav_share"
-        android:name="com.shresthagaurav.androidprojecttwitter.ui.share.ShareFragment"
+        android:name="com.shrestharohit.androidprojecttwittere.ui.share.ShareFragment"
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share" />
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="com.shresthagaurav.androidprojecttwitter.ui.send.SendFragment"
+        android:name="com.shrestharohit.androidprojecttwittere.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
 </navigation>

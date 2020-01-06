@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shresthagaurav.androidprojecttwitter">
+    package="com.shrestharohit.androidprojecttwittere">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,21 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Interested"/>
-        <activity android:name=".YourSelf" />
+        <activity android:name="com.shrestharohit.androidprojecttwittere.Interested"/>
+        <activity android:name="com.shrestharohit.androidprojecttwittere.YourSelf" />
         <activity
-            android:name=".DashBoard"
+            android:name="com.shrestharohit.androidprojecttwittere.DashBoard"
             android:label="title_activity_dash_board"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Customize" />
-        <activity android:name=".Camera" />
-        <activity android:name=".SignUP" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Login_activity" />
-        <activity android:name=".Password" />
-        <activity android:name=".Verification" />
-        <activity android:name=".Final_Step_signUP" />
-        <activity android:name=".SplashScreen">
+        <activity android:name="com.shrestharohit.androidprojecttwittere.Customize" />
+        <activity android:name="com.shrestharohit.androidprojecttwittere.Camera" />
+        <activity android:name="com.shrestharohit.androidprojecttwittere.SignUP" />
+        <activity android:name="com.shrestharohit.androidprojecttwittere.MainActivity" />
+        <activity android:name="com.shrestharohit.androidprojecttwittere.Login_activity" />
+        <activity android:name="com.shrestharohit.androidprojecttwittere.Password" />
+        <activity android:name="com.shrestharohit.androidprojecttwittere.Verification" />
+        <activity android:name="com.shrestharohit.androidprojecttwittere.Final_Step_signUP" />
+        <activity android:name="com.shrestharohit.androidprojecttwittere.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
